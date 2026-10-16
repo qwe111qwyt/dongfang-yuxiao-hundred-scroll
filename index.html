@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#691c25" />
+  <meta name="description" content="东方正在刷新——百年长卷交互设计。以十幅插画，翻阅从1919年五四运动到新时代脱贫攻坚的百年历程。" />
+  <title>东方正在刷新 · 百年长卷</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23691c25'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='40' fill='%23f5efe2'%3E东%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/interactive.css" />
+</head>
+<body>
+  <div class="desktop-caption" aria-hidden="true"><span>东方正在刷新</span><i></i><small>一卷百年 · 一路向前</small></div>
+  <main class="stage" id="stage">
+    <div class="particle-field" id="particles" aria-hidden="true"></div>
+    <button class="music-toggle" id="musicToggle" aria-label="开启背景音乐" aria-pressed="false" title="开启背景音乐">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 18V5l11-2v13M9 8l11-2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="6" cy="18" rx="3" ry="2" fill="currentColor"/><ellipse cx="17" cy="16" rx="3" ry="2" fill="currentColor"/></svg><span class="music-state">音乐</span>
+    </button>
+    <section class="screen screen-loading is-active" id="p0" aria-label="加载作品">
+      <div class="loading-seal" aria-hidden="true">东<br>方</div><p class="loading-text">正展开，一卷百年</p>
+      <div class="loading-track"><div id="loadingFill"></div></div><div class="loading-percent" id="loadingPercent" role="status">0%</div><small>FROM AWAKENING TO REVIVAL</small>
+    </section>
+    <section class="screen screen-cover" id="p1" aria-label="作品封面" inert>
+      <div class="cover-inner">
+        <div class="cover-eyebrow">红色之旅 <span>／</span> 追梦铸魂</div>
+        <div class="cover-edition"><span>百年长卷交互设计</span><span>VOL. 01 — 10</span></div>
+        <h1 class="cover-title"><span class="cover-title-top">东方</span><span class="cover-title-zh">正在刷新<span class="cover-seal" aria-hidden="true">百年</span></span></h1>
+        <p class="cover-title-sub">FROM AWAKENING TO REVIVAL</p>
+        <div class="cover-rule"><span>1919</span><i></i><span>新时代</span></div>
+        <p class="cover-desc">从觉醒的第一声，到复兴的每一步。<br>以十幅画，读懂一条来时的路。</p>
+        <button class="cover-cta" id="startBtn"><span>展开百年长卷</span><span aria-hidden="true">↗</span></button>
+        <p class="cover-foot">向上滑动或点击开始 · 建议开启音乐</p>
+      </div>
+      <div class="cover-art" aria-hidden="true"><img id="coverImg" alt="" width="941" height="1672" fetchpriority="high"><div class="cover-art-caption">山河锦绣，初心如一。</div></div>
+    </section>
+    <section class="screen screen-timeline" id="p2" aria-label="百年长卷" inert>
+      <header class="tl-fixed-top">
+        <div class="tl-titlebar"><button class="icon-button tl-back" id="tlBack" aria-label="返回封面">‹</button><div class="tl-titlebar-center"><span class="tl-titlebar-eyebrow">一卷百年</span><strong class="tl-titlebar-zh">东方正在刷新</strong></div><button class="tl-directory" id="chapterToggle" aria-label="打开章节目录">目录 <span aria-hidden="true">☷</span></button></div>
+        <div class="tl-progress-row"><span id="tlCurrentYear">序章</span><div class="tl-progress-bar" role="progressbar" aria-label="长卷阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="tl-progress-fill" id="tlProgressFill"></div></div><span><b id="tlProgressNow">0</b> / <span id="tlProgressTotal">10</span></span></div>
+      </header>
+      <div class="tl-scroll" id="tlScroll" tabindex="0" aria-label="滚动阅读十个历史篇章">
+        <section class="tl-prologue">
+          <div class="section-kicker">PROLOGUE <span>／</span> 序章</div><div class="tl-prologue-number" aria-hidden="true">100</div>
+          <h2 class="tl-prologue-title">来时的路，<br>照亮前行的方向。</h2>
+          <p class="tl-prologue-text">从街头的一声呐喊，到南湖的一叶红船；<br>从山河的新生，到万家的灯火。<br>百年，是无数人的一往无前。</p>
+          <p class="tl-prologue-strong">我们未曾见过彼此，<br>却走在同一条路上。</p>
+          <button class="prologue-next" id="firstChapter">循着时间，向下翻阅 <span aria-hidden="true">↓</span></button>
+          <div class="reading-note">点击画中数字，听见历史的回响<br>点击「查看全画」，细读每一处笔触</div>
+        </section>
+        <div id="timelineNodes"></div>
+        <section class="tl-epilogue" id="tlEpilogue">
+          <div class="section-kicker">EPILOGUE <span>／</span> 回响</div><div class="epilogue-mark" aria-hidden="true">续</div>
+          <p class="tl-epilogue-line">百年长卷，仍在续写。<br>下一帧，与你有关。</p>
+          <p class="tl-epilogue-sub" id="readingSummary">十个时代切片，一条共同的来路。</p>
+          <button class="cover-cta tl-epilogue-btn" id="goFinale"><span>写给此刻的你</span><span aria-hidden="true">↗</span></button>
+        </section>
+      </div>
+    </section>
+    <section class="screen screen-finale" id="p3" aria-label="终章：下一帧交给你" inert>
+      <button class="finale-back" id="finaleBack">‹ 返回长卷</button><div class="finale-stages" id="finaleStages"></div>
+      <footer class="finale-foot">
+        <div class="finale-controls"><button class="finale-prev" id="finalePrev" aria-label="终章上一段">←</button><div id="finaleDots" class="finale-dots" aria-label="终章段落"></div><button class="finale-next" id="finaleNext">继续 <span aria-hidden="true">→</span></button></div>
+        <button class="finale-replay" id="finaleReplay">↻ 再阅长卷</button><div class="finale-credit">东方正在刷新 · 百年长卷交互设计</div>
+      </footer>
+    </section>
+    <noscript><div class="noscript">请开启浏览器 JavaScript 后，展开百年长卷。</div></noscript>
+  </main>
+  <dialog class="chapter-dialog" id="chapterDialog" aria-labelledby="chapterTitle"><div class="dialog-header"><div><span class="section-kicker">CONTENTS</span><h2 id="chapterTitle">循年而行</h2></div><button class="icon-button" data-close-dialog aria-label="关闭目录">×</button></div><p class="dialog-intro">十幅画，十个改变中国的时代切片。</p><nav id="chapterList" aria-label="历史章节"></nav></dialog>
+  <dialog class="story-card" id="storyCard" aria-labelledby="storyTitle"><div class="story-card-step" data-step></div><button class="story-card-close icon-button" aria-label="关闭故事">×</button><h2 class="story-card-title" id="storyTitle" data-title></h2><div class="story-card-sub" data-sub></div><div class="story-card-divider"></div><p class="story-card-body" data-body></p><div class="story-card-actions"><span>画中有故事 · 细处见初心</span><button class="story-card-next" data-next>下一段 <span aria-hidden="true">→</span></button></div></dialog>
+  <dialog class="image-dialog" id="imageDialog" aria-labelledby="imageTitle"><header><h2 id="imageTitle"></h2><button class="icon-button" data-close-dialog aria-label="关闭全画">×</button></header><div class="image-dialog-scroll"><img id="fullImage" alt=""></div><p>完整插画 · 可使用浏览器缩放查看细节</p></dialog>
+  <script src="js/images-data.js"></script><script src="js/data.js"></script><script src="js/swiper.js"></script><script src="js/story-card.js"></script><script src="js/timeline.js"></script><script src="js/finale.js"></script><script src="js/audio.js"></script><script src="js/main.js"></script>
+</body>
+</html>
