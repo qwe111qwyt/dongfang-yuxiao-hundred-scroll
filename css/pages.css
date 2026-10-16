@@ -1,0 +1,65 @@
+/* 开卷、封面与终章 */
+.screen-loading { align-items:center; justify-content:center; gap:22px; background:var(--c-red-deep); color:var(--c-paper); }
+.loading-seal { border:1px solid #d8b87888; padding:12px 18px; font:32px/1.3 var(--f-serif); color:var(--c-gold-soft); }
+.loading-text { font:20px var(--f-serif); letter-spacing:.18em; margin-top:10px; }
+.loading-track { width:150px; height:1px; background:#dfc59133; margin-top:15px; }
+.loading-track>div { width:0; height:100%; background:var(--c-gold-soft); transition:width .25s; }
+.loading-percent { font:16px var(--f-num); color:var(--c-gold-soft); }
+.screen-loading small { font-size:8px; letter-spacing:.16em; opacity:.5; margin-top:25px; }
+.screen-cover { background:#f4eedf; overflow-y:auto; }
+.cover-inner { position:relative; z-index:2; padding:calc(28px + env(safe-area-inset-top)) 30px 0; flex:none; }
+.cover-eyebrow { font-size:10px; letter-spacing:.16em; color:var(--c-red-dark); padding-right:58px; min-height:28px; }
+.cover-eyebrow span { color:#bfa582; padding:0 4px; }
+.cover-edition { border-top:1px solid var(--c-line); display:flex; justify-content:space-between; padding-top:14px; margin-top:15px; font-size:9px; letter-spacing:.1em; color:#937c61; }
+.cover-title { font-family:var(--f-serif); font-weight:700; color:var(--c-red-dark); margin:24px 0 12px; line-height:1.12; }
+.cover-title-top { display:block; font-size:clamp(52px,15vw,70px); letter-spacing:.15em; margin-bottom:7px; }
+.cover-title-zh { display:block; position:relative; width:fit-content; font-size:clamp(42px,12.3vw,59px); letter-spacing:.08em; white-space:nowrap; }
+.cover-seal { position:absolute; right:-29px; top:3px; padding:5px 3px; font:10px/1.15 var(--f-serif); width:19px; white-space:normal; border:1px solid var(--c-red); color:var(--c-red); }
+.cover-title-sub { font:9px var(--f-num); letter-spacing:.22em; color:#84694d; }
+.cover-rule { display:flex; align-items:center; gap:12px; margin-top:21px; color:#8b6945; font:12px var(--f-num); }
+.cover-rule span:last-child { font-family:var(--f-serif); font-size:10px; letter-spacing:.1em; }
+.cover-rule i { display:block; height:1px; flex:1; background:linear-gradient(90deg,#b58b4b88,#b58b4b22); }
+.cover-desc { margin:18px 0 20px; font-size:12px; line-height:1.95; letter-spacing:.05em; color:#786757; }
+.cover-cta { display:inline-flex; justify-content:space-between; align-items:center; gap:28px; background:var(--c-red-dark); color:#fff7e7; padding:14px 22px; font-size:13px; letter-spacing:.12em; border-radius:2px; box-shadow:0 5px 16px #7d26301a; transition:background .2s,transform .2s; }
+.cover-cta:hover { background:var(--c-red); transform:translateY(-2px); }
+.cover-cta>span:last-child { font-size:20px; font-family:var(--f-num); }
+.cover-foot { color:#8c7965; font-size:9px; margin-top:12px; letter-spacing:.04em; }
+.cover-art { position:relative; flex:1; min-height:200px; margin-top:12px; overflow:hidden; background:#ecdec7; }
+.cover-art:before { content:""; position:absolute; z-index:1; inset:0; background:linear-gradient(#f4eedf 0%,#f4eedf00 40%,#3b201b22); pointer-events:none; }
+.cover-art img { width:100%; height:100%; position:absolute; object-fit:cover; object-position:50% 18%; filter:saturate(.75); }
+.cover-art-caption { position:absolute; bottom:calc(20px + env(safe-area-inset-bottom)); right:24px; z-index:2; font:11px var(--f-serif); letter-spacing:.2em; color:#fff6df; text-shadow:0 1px 5px #301708; }
+.screen-finale { background:#481b26; color:var(--c-paper); }
+.screen-finale:before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 10% 30%,#a33c3544,transparent 60%),repeating-linear-gradient(45deg,#e2bf7c04 0 1px,transparent 1px 14px); pointer-events:none; }
+.finale-back { position:absolute; top:calc(26px + env(safe-area-inset-top)); left:24px; z-index:3; font-size:12px; color:var(--c-gold-soft); }
+.finale-stages { position:relative; flex:1; min-height:0; margin:85px 0 0; }
+.finale-stage { display:none; height:100%; overflow-y:auto; padding:22px 30px 15px; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.finale-stage.is-active { display:flex; }
+.finale-stage { justify-content:safe center; }
+.finale-stage-index { font:italic 80px/.9 var(--f-num); color:#d5b57a33; margin-bottom:25px; }
+.finale-stage-eyebrow { font-size:10px; color:var(--c-gold-soft); letter-spacing:.3em; margin-bottom:20px; }
+.finale-stage-big { font:700 30px/1.6 var(--f-serif); letter-spacing:.06em; margin-bottom:22px; white-space:pre-line; }
+.finale-stage-sub { font-size:12px; line-height:2.2; color:#ecdbc7c9; white-space:pre-line; }
+.finale-stage-visual { width:65px; height:65px; border:1px solid #d4b77f55; border-radius:50%; display:grid; place-items:center; margin:24px 0 0; color:var(--c-gold-soft); font:26px var(--f-serif); }
+.finale-foot { position:relative; flex:none; padding:15px 30px calc(24px + env(safe-area-inset-bottom)); text-align:center; }
+.finale-controls { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #d4b77f33; padding:16px 0; gap:12px; }
+.finale-prev,.finale-next { min-height:40px; min-width:60px; color:var(--c-gold-soft); font-size:12px; }
+.finale-next span { margin-left:12px; }
+.finale-dots { display:flex; gap:6px; }
+.finale-dots button { width:28px; height:40px; display:grid; place-items:center; }
+.finale-dots button:after { content:""; width:5px; height:5px; background:#d4b77f55; border-radius:50%; }
+.finale-dots button.is-active:after { background:var(--c-gold-soft); width:18px; border-radius:4px; }
+.finale-replay { border:1px solid #d4b77f55; color:var(--c-gold-soft); padding:10px 24px; font-size:11px; letter-spacing:.12em; }
+.finale-credit { font-size:8px; letter-spacing:.15em; color:#d4b77f80; margin-top:16px; }
+@media(max-height:740px) {
+  .cover-inner { padding-top:calc(18px + env(safe-area-inset-top)); }
+  .cover-edition { margin-top:7px; padding-top:10px; }
+  .cover-title { margin-top:15px; }
+  .cover-title-top { font-size:48px; }
+  .cover-title-zh { font-size:43px; }
+  .cover-rule { margin-top:15px; }
+  .cover-desc { margin:12px 0 14px; }
+  .cover-art { min-height:145px; }
+  .finale-stage-index { font-size:55px; margin-bottom:15px; }
+  .finale-stage-big { font-size:25px; margin-bottom:12px; }
+  .finale-stage-visual { margin-top:15px; height:48px; width:48px; }
+}
