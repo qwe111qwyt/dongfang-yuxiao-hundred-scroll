@@ -5,7 +5,7 @@
     // 设置封面图（相对路径引用）
     const coverImg = document.getElementById('coverImg');
     if (coverImg) {
-      coverImg.src = 'assets/img-webp/06-founding-ceremony.webp';
+      coverImg.src = '06-founding-ceremony.webp';
     }
     const stage = document.getElementById('stage');
     const screens = Array.from(stage.querySelectorAll('.screen'));
@@ -56,9 +56,9 @@
     }
     // 以真实图片加载进度更新开卷页
     const urls = [
-      'assets/img-webp/06-founding-ceremony.webp',
-      'assets/img-webp/01-awakening.webp',
-      'assets/img-webp/02-founding.webp'
+      '06-founding-ceremony.webp',
+      '01-awakening.webp',
+      '02-founding.webp'
     ];
     let settled = 0;
     let finished = false;
