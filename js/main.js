@@ -2,10 +2,10 @@
 (function (global) {
   'use strict';
   document.addEventListener('DOMContentLoaded', () => {
-    // 设置封面图（base64内嵌）
+    // 设置封面图（相对路径引用）
     const coverImg = document.getElementById('coverImg');
-    if (coverImg && window.H5_IMAGES && window.H5_IMAGES['06-founding-ceremony']) {
-      coverImg.src = window.H5_IMAGES['06-founding-ceremony'];
+    if (coverImg) {
+      coverImg.src = 'assets/img-webp/06-founding-ceremony.webp';
     }
     const stage = document.getElementById('stage');
     const screens = Array.from(stage.querySelectorAll('.screen'));
@@ -54,8 +54,12 @@
         host.appendChild(particle);
       }
     }
-    // 以真实图片加载进度更新开卷页（base64内嵌，秒加载）
-    const urls = (window.H5_IMAGES && [window.H5_IMAGES['06-founding-ceremony'], window.H5_IMAGES['01-awakening'], window.H5_IMAGES['02-founding']]) || [];
+    // 以真实图片加载进度更新开卷页
+    const urls = [
+      'assets/img-webp/06-founding-ceremony.webp',
+      'assets/img-webp/01-awakening.webp',
+      'assets/img-webp/02-founding.webp'
+    ];
     let settled = 0;
     let finished = false;
     const began = performance.now();
@@ -66,7 +70,6 @@
       document.getElementById('loadingPercent').textContent = '100%';
       setTimeout(() => swiper.goTo(1),Math.max(0,650 - (performance.now() - began)));
     };
-    if (urls.length === 0) { finish(); }
     urls.forEach(url => {
       const image = new Image();
       const done = () => {

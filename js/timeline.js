@@ -1,7 +1,7 @@
 /* 十幅完整插画、章节目录、读图故事与滚动进度。 */
 (function (global) {
   'use strict';
-  const {NODES} = global.H5_DATA;
+  const {NODES,BASE,FALLBACK} = global.H5_DATA;
   let scroll;
   let resetRequested = false;
   const read = new Set();
@@ -23,14 +23,15 @@
       article.setAttribute('aria-labelledby', 'title-' + node.key);
       article.innerHTML = [
         '<div class="tl-node-yearstrip"><div class="tl-node-yearstrip-year ' + (i === 9 ? 'is-era' : '') + '">' + node.year + '</div><div class="tl-node-yearstrip-en">' + node.yearEn + '</div><div class="tl-node-serial">' + number + ' / 10</div></div>',
-        '<div class="tl-node-image-wrap"><img class="tl-node-image" src="' + (global.H5_IMAGES[node.imgBase] || '') + '" alt="' + node.subtitle + '主题插画" width="941" height="1672" loading="' + (i < 2 ? 'eager' : 'lazy') + '" decoding="async"><div class="tl-beat-spots"></div></div>',
+        '<div class="tl-node-image-wrap"><img class="tl-node-image" src="' + BASE + node.imgBase + '.webp" alt="' + node.subtitle + '主题插画" width="941" height="1672" loading="' + (i < 2 ? 'eager' : 'lazy') + '" decoding="async"><div class="tl-beat-spots"></div></div>',
         '<div class="tl-image-tools"><span>图 ' + number + ' · ' + node.subtitle + '</span><button class="tl-view-image">查看全画 ↗</button></div>',
         '<div class="tl-node-body"><div class="tl-node-title-row"><h2 class="tl-node-title" id="title-' + node.key + '">' + node.title + '</h2><span class="tl-node-subtitle">' + node.subtitle + '</span></div><p class="tl-node-text">' + node.text + '</p></div>',
         '<div class="tl-node-progress"><span class="tl-node-progress-label">读图故事</span><div class="tl-node-progress-dots"></div><span class="tl-node-read-count"></span></div>'
       ].join('');
       const image = article.querySelector('.tl-node-image');
       image.addEventListener('error', () => {
-        console.warn('Image load failed:', node.imgBase);
+        const source = image.parentElement.querySelector('source');
+        if (source) source.remove();
       }, {once:true});
       node.story.forEach((beat,j) => {
         const spot = document.createElement('button');
@@ -53,7 +54,7 @@
       article.querySelector('.tl-view-image').addEventListener('click', () => {
         const dialog = document.getElementById('imageDialog');
         const image = document.getElementById('fullImage');
-        image.src = global.H5_IMAGES[node.imgBase] || '';
+        image.src = BASE + node.imgBase + '.webp';
         image.alt = node.subtitle + '完整主题插画';
         document.getElementById('imageTitle').textContent = node.year + ' · ' + node.title;
         dialog.showModal();
